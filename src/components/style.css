@@ -1,0 +1,32 @@
+.bucket {
+    display: flex;
+    /* column-gap: 30px; */
+    height: 100px;
+    margin-top: 50px;
+}
+
+.bucketDiv {
+    width: 200px;
+    height: 100%;
+    border:2px solid grey;
+    border-radius: 3px;
+    position: relative;
+}
+
+.amountDiv {
+    height: 100%;
+    width: 40px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.waterDiv {
+    position:absolute;
+    background-color: blue;
+    left:0;
+    bottom: 0;
+    width: 100%;
+    transition: 2s;
+}
