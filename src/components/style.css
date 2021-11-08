@@ -5,7 +5,7 @@
     margin-top: 50px;
 }
 
-.bucketDiv {
+.bathtub {
     width: 200px;
     height: 100%;
     border:2px solid grey;
@@ -24,9 +24,15 @@
 
 .waterDiv {
     position:absolute;
-    background-color: blue;
+    /* background-color: blue; */
     left:0;
     bottom: 0;
     width: 100%;
     transition: 2s;
+}
+
+.blue-colored {
+    width: 100%;
+    height: 20px;
+    background-color: blue;
 }

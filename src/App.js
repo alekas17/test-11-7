@@ -3,26 +3,33 @@ import './App.css';
 import Bucket from './components/Bucket';
 
 function App() {
-  const [waterAmount, setWaterAmount] = useState(0);
-  const [flowDirection, setFlow] = useState(1);
+  // const [waterAmount, setWaterAmount] = useState(0);
+  const [waterState, setWaterState] = useState([]);
   const maxLevel = 5;
   const minLevel = 0;
-  const setCount = () => {
-    if(waterAmount === maxLevel - 1)
-      setFlow(-1);
-    else if(waterAmount === minLevel + 1)
-      setFlow(1);
-    setWaterAmount(waterAmount + flowDirection);
+  const changeLevel = (changeVal) => {
+    let tempState = waterState;
+    if(waterState === undefined && changeVal === 1)
+      setWaterState([1]);
+    let waterAmount = waterState.length;
+    if(waterAmount !== maxLevel && changeVal === 1)
+      setWaterState([...waterState, waterAmount + 1]);
+    if(waterAmount !== minLevel && changeVal === -1)
+    {
+      tempState.pop();
+      setWaterState([...tempState]);
+    }
   }
   return (
     <div className="App">
-      <Bucket amount={waterAmount}></Bucket>
-      <button onClick={() => setCount()}>
-        {flowDirection === 1 && "plusWaterLevel"}
-        {flowDirection === -1 && "reduceWaterLevel"}
+      <Bucket waterAmount={waterState}></Bucket>
+      <button onClick={() => changeLevel(1)}>
+        increaseWaterLevel
+      </button>
+      <button onClick={() => changeLevel(-1)}>
+        reduceWaterLevel
       </button>
     </div>
   );
 }
-
 export default App;
