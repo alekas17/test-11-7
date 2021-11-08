@@ -16,7 +16,7 @@ function App() {
       else if (isIncrease === false && waterState.length > 0) {
         setWaterState(waterState.slice(0, -1))
       }
-    }, 1000)
+    }, 2000)
   }, [isIncrease, waterState])
   return (
     <div className="App">
