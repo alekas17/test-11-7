@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Bucket from './components/Bucket';
 
 function App() {
   // const [waterAmount, setWaterAmount] = useState(0);
   const [waterState, setWaterState] = useState([]);
+  const [isIncrease, setIsIncrease] = useState(false);
   const maxLevel = 5;
-  const minLevel = 0;
-  const changeLevel = (changeVal) => {
-    let tempState = waterState;
-    if(waterState === undefined && changeVal === 1)
-      setWaterState([1]);
-    let waterAmount = waterState.length;
-    if(waterAmount !== maxLevel && changeVal === 1)
-      setWaterState([...waterState, waterAmount + 1]);
-    if(waterAmount !== minLevel && changeVal === -1)
-    {
-      tempState.pop();
-      setWaterState([...tempState]);
-    }
-  }
+  useEffect(() => {
+    console.log("sdf")
+    window.setTimeout(() => {
+      if (isIncrease === true && waterState.length < maxLevel) {
+        setWaterState([...waterState, 1])
+      }
+      else if (isIncrease === false && waterState.length > 0) {
+        setWaterState(waterState.slice(0, -1))
+      }
+    }, 1000)
+  }, [isIncrease, waterState])
   return (
     <div className="App">
       <Bucket waterAmount={waterState}></Bucket>
-      <button onClick={() => changeLevel(1)}>
+      <button onClick={() => setIsIncrease(true)}>
         increaseWaterLevel
       </button>
-      <button onClick={() => changeLevel(-1)}>
+      <button onClick={() => setIsIncrease(false)}>
         reduceWaterLevel
       </button>
     </div>
